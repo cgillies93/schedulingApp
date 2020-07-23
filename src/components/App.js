@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import AddAppointments from './AddAppointments';
+import SearchAppointments from './SearchAppointments';
+import ListAppointments from './ListAppointments';
+
 
 class App extends Component {
 
@@ -12,8 +15,8 @@ class App extends Component {
             <div className="col-md-12 bg-white">
               <div className="container">
               <AddAppointments />
-              <div>Search Appointments</div>
-              <div>List Appointments</div>
+              <SearchAppointments />
+              <ListAppointments />
               </div>
             </div>
           </div>
