@@ -3,7 +3,7 @@ import '../css/App.css';
 import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
 import ListAppointments from './ListAppointments';
-import { without } from 'lodash';
+import { without, concat } from 'lodash';
 
 
 
@@ -18,6 +18,7 @@ class App extends Component {
     }
     this.deleteAppointment = this.deleteAppointment.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
+    this.addAppointment = this.addAppointment.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,17 @@ class App extends Component {
       this.setState({
         appointments: appointments
       });
+    });
+  }
+
+  addAppointment(apt) {
+    let tempApts = this.state.appointments;
+    apt.aptId = this.state.lastIndex;
+    tempApts.unshift(apt);
+
+    this.setState({
+      appointments: tempApts,
+      lastIndex: this.state.lastIndex + 1
     });
   }
 
@@ -62,7 +74,8 @@ class App extends Component {
             <div className="col-md-12 bg-white">
               <div className="container">
               <AddAppointments formDisplay={this.state.formDisplay}
-                               toggleForm={this.toggleForm}/>
+                               toggleForm={this.toggleForm}
+                               addAppointment={this.addAppointment}/>
               <SearchAppointments />
               <ListAppointments appointments={this.state.appointments}
                                 deleteAppointment={this.deleteAppointment}/>
