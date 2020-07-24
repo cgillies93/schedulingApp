@@ -17,6 +17,35 @@
   color: black;
 }
 
+.search-form {
+  display: flex;
+  margin-top: 50px;
+}
+
+.search-form form {
+  width: 100%;
+  justify-content: center;
+}
+
+.sort-btn {
+  background-color: rgba(38, 70, 83, 1);
+  color: white;
+  border-radius: 2px;
+}
+
+.sort-btn:hover,
+.sort-button:active {
+  color: white;
+}
+
+.filter-item:hover,
+.filter-item:active {
+  background-color: rgba(38, 70, 83, 0.2);
+}
+
+.active {
+  background-color: rgba(38, 70, 83, 1)!important;
+}
 
 @supports (grid-area: auto) {
 
