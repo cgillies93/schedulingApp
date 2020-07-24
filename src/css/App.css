@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
-}
+@supports (grid-area: auto) {
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  .appointment-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    max-width: 640px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .appointment-card {
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    grid-template-rows: 1fr 1fr 2fr;
+    margin: 1em;
+    padding: 1em;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 1px 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
-  to {
-    transform: rotate(360deg);
+
+  .appointment-card:hover,
+  .appointment-card:active {
+    outline: 6px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: rgba(145, 75, 53, 0.12);
   }
+
+  .delete {
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+    margin-right: 50px;
+  }
+
+  .pet-name {
+    grid-column: 2/3;
+    grid-row: 1;
+  }
+
+  .owner-name {
+    grid-column: 2/3;
+    grid-row: 2;
+  }
+
+  .notes {
+    grid-column: 2/4;
+    grid-row: 3;
+  }
+
+  .date {
+    grid-column: 3/4;
+  }
+
+  @media screen and (min-width:991px){
+
+    .appointment-list {
+      display: flex;
+      margin: 0 auto;
+    }
+
+  }
+
 }
