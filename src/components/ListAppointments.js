@@ -8,10 +8,10 @@ class ListAppointments extends Component {
 
     return (
       <>
-        <h4>Appointments</h4>
+        <h4 className="text-center">Upcoming Appointments</h4>
         <div className="appointment-list">
           {this.props.appointments.map(apt => (
-            <div className="appointment-card" key={apt.aptId}>
+            <div className="appointment-card card" key={apt.aptId}>
               <button className="delete btn btn-sm btn-danger"
                       onClick={() => this.props.deleteAppointment(apt)}>
                 <IoMdClose className="delete-x"/>

@@ -1,3 +1,23 @@
+.add-appointment .card-body {
+  display: none;
+}
+
+.add-heading {
+  cursor: pointer;
+  background-color: rgba(38, 70, 83, 1);
+  color: white;
+}
+
+.add-btn {
+  background-color: rgba(38, 70, 83, 1);
+  color: white;
+}
+
+.search-title {
+  color: black;
+}
+
+
 @supports (grid-area: auto) {
 
   .appointment-list {
@@ -15,14 +35,13 @@
     padding: 1em;
     width: 100%;
     max-width: 640px;
-    box-shadow: 1px 1px 1px 3px rgba(0, 0, 0, 0.5);
+    color: black;
   }
 
   .appointment-card:hover,
   .appointment-card:active {
-    outline: 6px solid rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    background-color: rgba(145, 75, 53, 0.12);
+    background-color: rgba(38, 70, 83, 0.2);
   }
 
   .delete {
@@ -66,5 +85,4 @@
     }
 
   }
-
 }

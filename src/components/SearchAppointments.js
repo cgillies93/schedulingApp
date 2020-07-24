@@ -4,7 +4,7 @@ class SearchAppointments extends Component {
 
   render() {
 
-    return <div>Search Appointments</div>
+    return <div className="search-title">Search Appointments</div>
   }
 }
 
