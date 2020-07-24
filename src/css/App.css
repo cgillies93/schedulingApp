@@ -26,12 +26,17 @@
   }
 
   .delete {
+    display: flex;
     font-size: 20px;
     font-weight: bold;
     height: 40px;
     width: 40px;
     margin: 0 auto;
     margin-right: 50px;
+  }
+
+  .delete-x {
+    font-size: 30px;
   }
 
   .pet-name {

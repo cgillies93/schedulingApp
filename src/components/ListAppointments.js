@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-
+import { IoMdClose } from "react-icons/io";
 
 class ListAppointments extends Component {
 
@@ -12,7 +12,10 @@ class ListAppointments extends Component {
         <div className="appointment-list">
           {this.props.appointments.map(apt => (
             <div className="appointment-card" key={apt.aptId}>
-              <button className="delete btn btn-sm btn-danger">X</button>
+              <button className="delete btn btn-sm btn-danger"
+                      onClick={() => this.props.deleteAppointment(apt)}>
+                <IoMdClose className="delete-x"/>
+              </button>
               <div className="pet-name">
                 <h6>Pet Name</h6>
                 <p>{apt.petName}</p>
