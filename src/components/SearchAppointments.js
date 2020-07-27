@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 class SearchAppointments extends Component {
-
-
-
+  
   render() {
 
     return (
@@ -11,7 +9,8 @@ class SearchAppointments extends Component {
             <form className="form-inline my-2 my-lg-0">
               <div>
                 <input className="form-control mr-sm-2" type="search"
-                       placeholder="Search Appointments" aria-label="Search" />
+                       placeholder="Search Appointments" aria-label="Search"
+                       onChange={e => this.props.search(e.target.value)}/>
               </div>
               <a className="nav-link dropdown-toggle sort-btn" href="#"
                  id="filter" role="button" data-toggle="dropdown"

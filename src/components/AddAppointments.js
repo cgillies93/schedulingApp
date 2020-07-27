@@ -28,7 +28,7 @@ class AddAppointments extends Component {
 
     this.props.addAppointment(tempApt);
 
-    this.state = {
+    this.setState = {
       petName: "",
       ownerName: "",
       aptDate: "",
