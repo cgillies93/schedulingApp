@@ -22,11 +22,11 @@ def db_drop_and_create_all():
 #Models
 
 class Appointment(db.Model):
-    id = Column(Integer().with_varient(Integer, 'sqlite'), primary_key=true)
-    pet_name = Column(String(50), nullable=false)
-    owner_name = Column(String(50), nullable=false)
+    id = Column(Integer().with_variant(Integer, 'sqlite'), primary_key=True)
+    pet_name = Column(String(50), nullable=False)
+    owner_name = Column(String(50), nullable=False)
     notes = Column(String())
-    date = Column(DateTime(), nullable=false)
+    date = Column(String(), nullable=False)
 
     def insert(self):
         db.session.add(self)
@@ -39,5 +39,14 @@ class Appointment(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def format(self):
+        return {
+            'id': self.id,
+            'pet_name': self.pet_name,
+            'owner_name': self.owner_name,
+            'notes': self.notes,
+            'date': self.date
+        }
+
     def __repr__(self):
-        return json.dumps(self)
+        return json.dumps(self.format())
