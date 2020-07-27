@@ -61,8 +61,23 @@ def edit_appointment(apt_id):
     appointment = Appointment.query.filter(Appointment.id == apt_id).first()
     data = request.get_json()
 
-    try:
+    for key in data.keys():
+        if data[key] is None:
+            data.pop(key)
 
+    if 'petName' in data:
+        appointment.pet_name = data['petName']
+
+    if 'ownerName' in data:
+        appointment.owner_name = data['ownerName']
+
+    if 'aptNotes' in data:
+        appointment.notes = data['aptNotes']
+
+    if 'aptDate' in data:
+        appointment.date = data['aptDate']
+
+    try:
 
         appointment.update()
 
@@ -74,8 +89,16 @@ def edit_appointment(apt_id):
     except:
         abort(404)
 
+@app.route('/<int:apt_id>', methods=['DELETE'])
+def delete_appointment(apt_id):
+    appointment = Appointment.query.filter(Appointment.id == apt_id).first()
 
-#
-# @app.route('/', methods=['DELETE'])
-# def delete_appointment():
-#     pass
+    try:
+        appointment.delete()
+
+        return jsonify({
+            'success': True,
+            'deleted': appointment.id
+        }), 200
+    except:
+        abort(404)
