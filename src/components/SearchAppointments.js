@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class SearchAppointments extends Component {
-  
+
   render() {
 
     return (
@@ -21,28 +21,28 @@ class SearchAppointments extends Component {
 
                 <a className={
                               "dropdown-item filter-item " +
-                              (this.props.orderBy === "petName" ? "active" : "")
+                              (this.props.orderBy === "pet_name" ? "active" : "")
                             }
                    onClick={ e => {
-                     this.props.changeOrder("petName", this.props.orderDir);
+                     this.props.changeOrder("pet_name", this.props.orderDir);
                     }
                    }
                    href="#">Pet Name</a>
                 <a className={
                               "dropdown-item filter-item " +
-                              (this.props.orderBy === "ownerName" ? "active" : "")
+                              (this.props.orderBy === "owner_name" ? "active" : "")
                             }
                   onClick={ e => {
-                    this.props.changeOrder("ownerName", this.props.orderDir);
+                    this.props.changeOrder("owner_name", this.props.orderDir);
                     }
                    }
                    href="#">Owner Name</a>
                 <a className={
                               "dropdown-item filter-item " +
-                              (this.props.orderBy === "aptDate" ? "active" : "")
+                              (this.props.orderBy === "date" ? "active" : "")
                             }
                     onClick={ e => {
-                      this.props.changeOrder("aptDate", this.props.orderDir);
+                      this.props.changeOrder("date", this.props.orderDir);
                      }
                     }
                     href="#">{"Date"}</a>

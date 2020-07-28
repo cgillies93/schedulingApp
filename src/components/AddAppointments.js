@@ -20,10 +20,10 @@ class AddAppointments extends Component {
   handleAdd(e) {
     e.preventDefault();
     let tempApt = {
-      petName: this.state.petName,
-      ownerName: this.state.ownerName,
-      aptDate: this.state.aptDate + " " + this.state.aptTime,
-      aptNotes: this.state.aptNotes
+      pet_name: this.state.petName,
+      owner_name: this.state.ownerName,
+      date: String(this.state.aptDate + " " + this.state.aptTime),
+      notes: this.state.aptNotes
     };
 
     this.props.addAppointment(tempApt);
@@ -111,7 +111,7 @@ class AddAppointments extends Component {
                 className="col-md-2 col-form-label text-md-right"
                 htmlFor="aptDate"
               >
-                Date
+                {"Date"}
               </label>
               <div className="col-md-4">
                 <input
@@ -143,7 +143,7 @@ class AddAppointments extends Component {
 
             <div className="form-group form-row">
               <label className="col-md-2 text-md-right" htmlFor="aptNotes">
-                Apt. Notes
+                Apt Notes
               </label>
               <div className="col-md-10">
                 <textarea
