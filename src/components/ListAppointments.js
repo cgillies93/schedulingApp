@@ -11,28 +11,28 @@ class ListAppointments extends Component {
         <h4 className="text-center">Upcoming Appointments</h4>
         <div className="appointment-list">
           {this.props.appointments.map(apt => (
-            <div className="appointment-card card" key={apt.aptId}>
+            <div className="appointment-card card" key={apt.id}>
               <button className="delete btn btn-sm btn-danger"
                       onClick={() => this.props.deleteAppointment(apt)}>
                 <IoMdClose className="delete-x"/>
               </button>
               <div className="pet-name">
                 <h6>Pet Name</h6>
-                <p>{apt.petName}</p>
+                <p>{apt.pet_name}</p>
               </div>
               <div className="owner-name">
                 <h6>Owner Name</h6>
-                <p>{apt.ownerName}</p>
+                <p>{apt.owner_name}</p>
               </div>
               <div className="notes">
                 <h6>Notes:</h6>
-                <p>{apt.aptNotes}</p>
+                <p>{apt.notes}</p>
               </div>
               <div className="date">
                 <h6>Appointment {'Date'}</h6>
                 <span>
                   <Moment
-                    date={apt.aptDate}
+                    date={apt.date}
                     parse="YYYY-MM-dd hh:mm"
                     format="MMM-D h:mma"
                   />

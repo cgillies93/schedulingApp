@@ -3,9 +3,8 @@ import '../css/App.css';
 import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
 import ListAppointments from './ListAppointments';
-import { without } from 'lodash';
 
-
+const API_URI = 'http://localhost:5000';
 
 class App extends Component {
 
@@ -14,54 +13,59 @@ class App extends Component {
     this.state = {
       appointments: [],
       formDisplay: false,
-      orderBy: 'aptDate',
+      orderBy: 'pet_name',
       orderDir: 'asc',
       queryParams: '',
-      lastIndex: 0
+      numApts: 0
     }
+    this.addAppointment = this.addAppointment.bind(this);
     this.deleteAppointment = this.deleteAppointment.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
-    this.addAppointment = this.addAppointment.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
     this.search = this.search.bind(this);
   }
 
   componentDidMount() {
-    fetch('./data.json')
+    fetch(`${API_URI}/`)
     .then(response => response.json())
     .then(jsonResponse => {
-      const appointments = jsonResponse.map(appointment => {
-        appointment.aptId = this.state.lastIndex;
-        this.setState({
-          lastIndex: this.state.lastIndex + 1
-        });
-        return appointment;
-      });
-
       this.setState({
-        appointments: appointments
-      });
+        appointments: jsonResponse.appointments,
+        numApts: jsonResponse.number_of_appointments
+      })
     });
   }
 
   addAppointment(apt) {
-    let tempApts = this.state.appointments;
-    apt.aptId = this.state.lastIndex;
-    tempApts.unshift(apt);
-
-    this.setState({
-      appointments: tempApts,
-      lastIndex: this.state.lastIndex + 1
-    });
+    console.log(apt);
+    fetch(`${API_URI}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(apt)
+    })
+    .then(response => {
+      response.json();
+      console.log(response);
+    })
+    .catch(error => {console.log(error)})
   }
 
   deleteAppointment(apt) {
-    let tempApts = this.state.appointments;
-    tempApts = without(tempApts, apt);
-
-    this.setState({
-      appointments: tempApts
+    console.log(apt);
+    fetch(`${API_URI}/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(apt)
     })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {console.log(error);})
+
   }
 
   toggleForm() {
@@ -107,13 +111,13 @@ class App extends Component {
     })
     .filter(apt => {
       return (
-        apt['petName']
+        apt['pet_name']
         .toLowerCase()
         .includes(this.state.queryParams.toLowerCase()) ||
-        apt['ownerName']
+        apt['owner_name']
         .toLowerCase()
         .includes(this.state.queryParams.toLowerCase()) ||
-        apt['aptNotes']
+        apt['notes']
         .toLowerCase()
         .includes(this.state.queryParams.toLowerCase())
       );
@@ -143,5 +147,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

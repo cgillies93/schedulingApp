@@ -20,6 +20,7 @@ def after_request(response):
                          "Content-Type, Authorization, true")
     response.headers.add("Access-Control-Allow-Methods",
                          "GET, POST, PATCH, DELETE, OPTIONS")
+
     return response
 
 @app.route('/', methods=['GET'])
@@ -39,10 +40,10 @@ def appointments():
 @app.route('/', methods=['POST'])
 def add_appointment():
     data = request.get_json()
-    pet_name = data['petName']
-    owner_name = data['ownerName']
-    notes = data['aptNotes']
-    date = data['aptDate']
+    pet_name = data['pet_name']
+    owner_name = data['owner_name']
+    notes = data['notes']
+    date = data['date']
 
     try:
         new_apt = Appointment(pet_name=pet_name, owner_name=owner_name,
@@ -89,8 +90,11 @@ def edit_appointment(apt_id):
     except:
         abort(404)
 
-@app.route('/<int:apt_id>', methods=['DELETE'])
-def delete_appointment(apt_id):
+@app.route('/', methods=['DELETE'])
+def delete_appointment():
+    apt = request.get_json()
+    print(apt)
+    apt_id = apt['id']
     appointment = Appointment.query.filter(Appointment.id == apt_id).first()
 
     try:
