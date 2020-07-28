@@ -3,6 +3,7 @@ import '../css/App.css';
 import AddAppointments from './AddAppointments';
 import SearchAppointments from './SearchAppointments';
 import ListAppointments from './ListAppointments';
+import { without } from 'lodash';
 
 const API_URI = 'http://localhost:5000';
 
@@ -13,11 +14,12 @@ class App extends Component {
     this.state = {
       appointments: [],
       formDisplay: false,
-      orderBy: 'pet_name',
+      orderBy: 'date',
       orderDir: 'asc',
       queryParams: '',
       numApts: 0
     }
+    this.getAppointments = this.getAppointments.bind(this);
     this.addAppointment = this.addAppointment.bind(this);
     this.deleteAppointment = this.deleteAppointment.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
@@ -26,6 +28,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getAppointments();
+  }
+
+  getAppointments() {
     fetch(`${API_URI}/`)
     .then(response => response.json())
     .then(jsonResponse => {
@@ -46,8 +52,11 @@ class App extends Component {
       body: JSON.stringify(apt)
     })
     .then(response => {
-      response.json();
-      console.log(response);
+      let tempApts = this.state.appointments;
+      tempApts.push(apt);
+      this.setState({
+        appointments: tempApts
+      });
     })
     .catch(error => {console.log(error)})
   }
@@ -62,7 +71,11 @@ class App extends Component {
       body: JSON.stringify(apt)
     })
     .then(response => {
-      console.log(response);
+      let tempApts = this.state.appointments;
+      tempApts = without(tempApts, apt);
+      this.setState({
+        appointments: tempApts
+      });
     })
     .catch(error => {console.log(error);})
 
